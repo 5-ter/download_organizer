@@ -54,7 +54,10 @@ python3 main.py
 
 ## How It Works
 
-The script scans all files in the Downloads folder and organizes them into subfolders based on file extension. If a file with the same name already exists in the destination folder, it automatically adds a number suffix to prevent overwriting.
+The script scans all files in the Downloads folder and organizes them into subfolders based on file extension. 
+
+If a file with the same name already exists in the destination folder, it automatically adds a number suffix to prevent overwriting.
+(feature will be added in next update)
 
 **Example:**
 ```
@@ -113,3 +116,4 @@ Suggestions and improvements are welcome! Feel free to open an issue or pull req
 ---
 
 If you found this project helpful, consider giving it a star!
+
