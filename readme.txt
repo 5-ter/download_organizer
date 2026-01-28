@@ -4,7 +4,7 @@ Python script that automatically organizes your Downloads folder files into cate
 
 ## About The Project
 
-Organizes the download folder based on the file extension.
+Currently organizes the download folder based on the file extension.
 
 **Organizes by type:**
 - Photos (jpg, png, gif, svg...)
@@ -117,6 +117,7 @@ Suggestions and improvements are welcome! Feel free to open an issue or pull req
 ---
 
 If you found this project helpful, consider giving it a star!
+
 
 
 
