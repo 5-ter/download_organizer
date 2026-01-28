@@ -1,6 +1,6 @@
 # Download Organizer
 
-Python script that automatically organizes your Downloads folder files into categorized subfolders by file type.
+Python script that automatically organizes your Downloads folder files into categorized subfolders by file type, based on the magic numbers.
 
 ## About The Project
 
@@ -84,6 +84,7 @@ This project helped me develop:
 - Solving real-world problems with code
 
 ## Future Improvements
+- [ ] Add magic numbers logic
 - [ ] Prevent overwrite 
 - [ ] Automatic folder creation
 - [ ] Watchdog integration for automatic organization on new downloads
@@ -116,5 +117,6 @@ Suggestions and improvements are welcome! Feel free to open an issue or pull req
 ---
 
 If you found this project helpful, consider giving it a star!
+
 
 
