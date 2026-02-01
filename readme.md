@@ -87,6 +87,7 @@ The script uses file magic numbers instead of relying solely on extensions, whic
 
 ## Planned Features
 
+- Monitor Downloads folder for new files to organize automatically
 - Custom folder configuration
 - Command line arguments for more control
 - Expanded magic number dictionary for more file types
@@ -126,3 +127,4 @@ Found a bug or have a feature suggestion? Feel free to open an issue or submit a
 ---
 
 A simple utility that does one thing well: keeping your Downloads folder organized.
+
