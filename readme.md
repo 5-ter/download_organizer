@@ -7,15 +7,16 @@ A Python script that automatically organizes files in your Downloads folder by r
 This script keeps your Downloads folder clean by automatically categorizing files based on their actual file type rather than just their extension. It reads the first few bytes of each file (the "magic number") to determine what type of file it really is, making it more reliable than extension-based sorting.
 
 **Currently supports:**
+- Text: txt
 - Images: PNG, JPEG, GIF
-- Videos: MP4
-- Documents: PDF
+- Videos: MP4, WEBM
+- Documents: PDF , DOCX
 - Audio: MP3
 - Executables: EXE
 - Installers: MSI, MSIX
 - Everything else goes to Misc
 
-Files are sorted into dedicated folders: `executables`, `photos`, `videos`, `installers`, `docs`, and `misc`.
+Files are sorted into dedicated folders: `executables`, `photos`, `videos`, `installers`, `docs`, `txt` and `misc`.
 
 ## How It Works
 

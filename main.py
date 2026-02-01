@@ -9,14 +9,16 @@ downloads = Path.home()/"Downloads"
 executables = downloads/ "executables"
 photos = downloads/ "photos"
 videos = downloads/ "videos"
-installers = downloads/ "installers"
+installers_zips = downloads/ "installers_and_zips"
 docs = downloads/ "docs"
 misc = downloads/ "misc"
+txt = downloads/ "txt"
 
 
 
 
-folder_list = [executables, photos, videos, installers, docs, misc]
+
+folder_list = [executables, photos, videos, installers_zips, docs, misc, txt]
 
 #remember to write the similar longer hexes first
 magic_dict = {
@@ -97,14 +99,16 @@ def check_d_files():
             match file_type:
                 case ".exe":
                     check_rename_move(file, executables)
-                case ".mp4":
+                case ".mp4"| ".webm":
                     check_rename_move(file, videos)
-                case ".pdf" | ".csv":
+                case ".pdf" | ".csv" |".docx":
                     check_rename_move(file, docs)
-                case ".msi" | ".msix":
-                    check_rename_move(file, installers)
+                case ".msi" | ".msix" | ".zip" | ".7zp":
+                    check_rename_move(file, installers_zips)
                 case ".jpeg"| ".png"|".jpg"|".gif":
                     check_rename_move(file, photos)
+                case ".txt":
+                    check_rename_move(file, txt)   
                 case _:
                     check_rename_move(file, misc)
 
