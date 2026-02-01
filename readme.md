@@ -1,26 +1,36 @@
 # Download Organizer
 
-Python script that automatically organizes your Downloads folder files into categorized subfolders by file type, based on the magic numbers.
+A Python script that automatically organizes files in your Downloads folder by reading their magic numbers (file signatures) and sorting them into categorized subfolders.
 
-## About The Project
+## About
 
-Currently organizes the download folder based on the file extension.
+This script keeps your Downloads folder clean by automatically categorizing files based on their actual file type rather than just their extension. It reads the first few bytes of each file (the "magic number") to determine what type of file it really is, making it more reliable than extension-based sorting.
 
-**Organizes by type:**
-- Photos (jpg, png, gif, svg...)
-- Docs (pdf, docx, txt, xlsx...)
-- Videos (mp4, avi, mkv...)
-- Installers (msi, deb, dmg...)
-- Executables (exe)
+**Currently supports:**
+- Images: PNG, JPEG, GIF
+- Videos: MP4
+- Documents: PDF
+- Audio: MP3
+- Executables: EXE
+- Installers: MSI, MSIX
+- Everything else goes to Misc
 
-(May not match with code yet. This will be improved upon in a future update)
+Files are sorted into dedicated folders: `executables`, `photos`, `videos`, `installers`, `docs`, and `misc`.
 
-Developed as a learning project in Python and automation.
+## How It Works
+
+1. Creates the necessary category folders in your Downloads directory if they don't exist
+2. Scans each file and reads its first 4 bytes to identify the file signature
+3. Matches the signature against a dictionary of known magic numbers
+4. For MP4 files specifically, reads up to 12 bytes to check for the ftyp marker
+5. Falls back to file extension if no magic number matches
+6. Moves files to their appropriate category folder
+7. Automatically handles name conflicts by appending numbers (e.g., `photo(1).jpg`)
 
 ## Getting Started
 
 ### Prerequisites
-- Python 3.7 or higher
+- Python 3.10 or higher (uses match-case statements)
 
 ### Installation
 
@@ -33,92 +43,86 @@ cd download-organizer
 python3 main.py
 ```
 
-### Usage
+That's it. The script will create the necessary folders and start organizing your files.
 
-**Note:** Currently, you need to create the category folders manually before running the script. This will be automated in a future update.
+## Usage
 
-Create the following folders in your Downloads directory:
-
-- Docs
-- Photos
-- Executables
-- Videos
-- Installers
-- Misc
-
-Then, simply run the script:
-
+Simply run:
 ```bash
 python3 main.py
 ```
 
-## How It Works
-
-The script scans all files in the Downloads folder and organizes them into subfolders based on file extension. 
-
-If a file with the same name already exists in the destination folder, it automatically adds a number suffix to prevent overwriting.
-(feature will be added in next update)
+The script will process all files in your Downloads folder and move them to appropriate subfolders. Files currently in use or lacking proper permissions will be skipped with an error message.
 
 **Example:**
 ```
 Downloads/
-├── photo.jpg          → Moved to Downloads/Images/
-├── document.pdf       → Moved to Downloads/Docs/
-└── video.mp4         → Moved to Downloads/Videos/
+├── vacation.jpg       → Downloads/photos/
+├── report.pdf         → Downloads/docs/
+├── song.mp3          → Downloads/misc/
+└── installer.exe      → Downloads/executables/
 ```
+
+## Technical Details
+
+The script uses file magic numbers instead of relying solely on extensions, which means:
+- A `.txt` file renamed to `.jpg` will still be correctly identified
+- More accurate file type detection
+- Better handling of files with missing or incorrect extensions
+
+**Magic numbers currently recognized:**
+- `89504E470D0A1A0A` - PNG images
+- `FFD8FF` - JPEG images  
+- `474946383761` - GIF images
+- `4D5A` - EXE executables
+- `494433`, `FFFB`, `FFF3`, `FFF2` - MP3 audio
+- `255044462D` - PDF documents
+- `66747970` (within first 12 bytes) - MP4 video
 
 ## Built With
 
-- **Python 3** - Core language
-- **pathlib** - File path manipulation
-- **shutil** - File operations
-- **os** - Operating system interface
+- **pathlib** - Modern file path handling
+- **shutil** - File moving operations
+- **sys** - System-specific parameters
 
-## What I Learned
+## Planned Features
 
-This project helped me develop:
-- File and directory manipulation in Python
-- Dictionary usage and data structures
-- Exception handling and edge cases
-- Code best practices (docstrings, naming conventions)
-- Solving real-world problems with code
-
-## Future Improvements
-- [ ] Add magic numbers logic
-- [ ] Prevent overwrite 
-- [ ] Automatic folder creation
-- [ ] Watchdog integration for automatic organization on new downloads
-- [ ] Customizable category configuration via config file
-- [ ] Undo last organization feature
-- [ ] Activity logging system
-- [ ] Date-based organization option
-- [ ] Cross-platform compatibility testing
+- Custom folder configuration
+- Command line arguments for more control
+- Expanded magic number dictionary for more file types
+- Option to organize by date or custom rules
+- Dry-run mode to preview changes
+- Logging of all file operations
 
 ## Important Notes
 
-- Backup recommended before first use
-- Script moves files, does not delete them
-- Use only on your own machine
-- Intended for educational purposes
+- The script **moves** files, it doesn't copy them
+- Files that can't be read (permission errors) are skipped
+- Consider backing up your Downloads folder before running for the first time
+- Duplicate filenames are handled automatically with numbered suffixes
+
+## What I Learned
+
+Building this project taught me about:
+- Reading and interpreting binary file signatures
+- Recursive functions for handling edge cases
+- Python's pathlib for cross-platform file handling
+- Error handling in file operations
+- Practical automation that solves a real problem
 
 ## License
 
-This project is open source and available for educational purposes.
+Open source and available for personal and educational use.
 
 ## Author
 
-**Henrique**
-- GitHub: [@5-ter](https://github.com/5-ter)
+**Henrique**  
+GitHub: [@5-ter](https://github.com/5-ter)
 
 ## Contributing
 
-Suggestions and improvements are welcome! Feel free to open an issue or pull request.
+Found a bug or have a feature suggestion? Feel free to open an issue or submit a pull request.
 
 ---
 
-If you found this project helpful, consider giving it a star!
-
-
-
-
-
+A simple utility that does one thing well: keeping your Downloads folder organized.
